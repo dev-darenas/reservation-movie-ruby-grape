@@ -17,7 +17,7 @@ module API
           requires :end_date, type: Date
         end
         post do
-          p " some some "
+          MoviesTransactions::Create.call(params: params)
         end
       end
     end
