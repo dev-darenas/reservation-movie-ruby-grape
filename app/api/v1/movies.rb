@@ -3,9 +3,11 @@ module API
     class Movies < Grape::API
       resource :movies do
         desc 'Return list of movies.'
+        params do
+          requires :date, type: Date
+        end
         get do
-          p " enter to return list movies "
-          { some: "some" }
+          Movie.range_date(params[:date]).collect { |m| m.values }
         end
 
         desc 'Create a Movie.'
@@ -17,7 +19,15 @@ module API
           requires :end_date, type: Date
         end
         post do
-          MoviesTransactions::Create.call(params: params)
+          MoviesTransactions::Create.call(params) do |result|
+            result.success do |movie|
+              movie.values
+            end
+
+            result.failure do |error|
+              { error: error }
+            end
+          end
         end
       end
     end
