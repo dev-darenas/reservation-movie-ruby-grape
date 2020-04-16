@@ -1,4 +1,5 @@
 class Movie < Sequel::Model(:movies);
+  one_to_many :reservations
 
   def validate
     super

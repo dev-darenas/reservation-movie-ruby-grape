@@ -44,8 +44,8 @@ namespace :db do
 
     db.create_table :reservations do
       primary_key :id
-      Integer :movie_id
-      Integer :customer_id
+      foreign_key :movie_id, :movies, :null=>false
+      foreign_key :customer_id, :customers, :null=>false
       Date :reservation_date
     end
 

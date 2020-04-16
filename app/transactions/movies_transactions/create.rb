@@ -8,4 +8,3 @@ module MoviesTransactions
     end
   end
 end
-
