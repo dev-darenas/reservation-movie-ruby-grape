@@ -25,7 +25,7 @@ module API
             end
 
             result.failure do |error|
-              { error: error }
+              error!(error, 400)
             end
           end
         end

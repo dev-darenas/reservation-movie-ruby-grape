@@ -3,8 +3,14 @@ module MoviesTransactions
     step :create_movie
 
     def create_movie(input)
-      movie = Movie.create(input)
-      Success(movie)
+      movie = Movie.new(input)
+
+      if movie.valid?
+        movie.save
+        Success(movie)
+      else
+        Failure(error: movie.errors)
+      end
     end
   end
 end

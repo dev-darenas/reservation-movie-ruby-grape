@@ -15,8 +15,13 @@ module ReservationsTransactions
       Failure(error: 'Movie doesn`t exist') if @movie.nil?
       input.delete("customer")
       input[:customer_id] = @customer.id
-      @reservation = Reservation.create(input)
-      Success(@reservation)
+      @reservation = Reservation.new(input)
+      if @reservation.valid?
+        @reservation.save
+        Success(@reservation)
+      else
+        Failure(error: @reservation.errors)
+      end
     end
   end
 end
