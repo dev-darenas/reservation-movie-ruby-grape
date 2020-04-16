@@ -23,7 +23,7 @@ After run this command you can use de API in the port 9292
 1. 
 DESCIRPTION: Create a new movie.  
 TYPE: POST.  
-URL: http://localhost:9292/api/v1/movies 
+URL: http://localhost:9292/api/v1/movies   
 PARAMS:  
 ```
   {
